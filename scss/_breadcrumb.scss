@@ -36,8 +36,8 @@
 				margin-bottom: 50px;
 			}
 		}
-	}	
-	
+	}
+
 }
 
 
@@ -51,7 +51,7 @@
 	margin-bottom: 0px;
 	.banner_inner{
 		background: #04091e;
-		position: relative; 
+		position: relative;
 		overflow: hidden;
 		width: 100%;
 		min-height: 660px;
@@ -142,7 +142,7 @@
 						margin-right: 0px;
 						&:before{
 							display: none;
-						}	
+						}
 					}
 					&:hover{
 						color: $baseColor;
@@ -249,26 +249,26 @@
   ============================================================================================ */
   .banner-breadcrumb{
     display: inline-block;
-    
+
     .breadcrumb{
       background: transparent;
       padding: 0;
-  
+
       &-item{
         padding: .1rem;
-  
+
         a{
           text-transform: capitalize;
           color: $white;
         }
-  
+
         &+.breadcrumb-item::before{
           color: $white;
           padding-left: .2rem;
           padding-right: .4rem;
           // content: "-";
         }
-  
+
         &.active{
           color: $white;
         }

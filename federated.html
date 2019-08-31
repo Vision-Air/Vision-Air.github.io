@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/icon/lenseye.jpeg" type="image/jpeg">
+    <title>Federated Learning</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style_div.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html">VisionAir</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="feature.html">Dataset</a></li>
+                            <li class="nav-item"><a class="nav-link" href="price.html">Application</a></li>
+                            <li class="nav-item"><a class="nav-link" href="federated.html">Tutorial</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+
+    <!--================Hero Banner Area Start =================-->
+    <section class="hero-banner d-flex align-items-center">
+        <div class="container text-center">
+            <h2>Implementing Federated Learning in Android</h2>
+            <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                <ol class="breadcrumb">
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <!--================Hero Banner Area End =================-->
+
+    <!--================Service  Area =================-->
+<div class="text-div">
+  <div class="container">
+      <p>Deep Learning has gained intense attention in recent times. As the field expands, more and more research is done to expand its horizon. But, Deep Learning algorithms are notorious for requiring large amounts of data to perform well..</p>
+<p>However, advances in technology have caused a rise in privacy concerns with companies using unethical means to collect data for their algorithms. This leads to people not willing to share data for improvisation.</p>
+<p>Also, researchers and organisations are not able to share data. Crowdsourcing of data becomes difficult and leads to increased costs.</p>
+<p><em><b>Federated Learning</b> aims to solve the growing privacy concerns and allows application of crowdsourcing techniques to collect data.</p></em>
+</div>
+</div>
+    <!--================Service Area end =================-->
+
+
+    <!--================About  Area =================-->
+    <section class="about-area area-padding-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+                    <div class="area-heading">
+                        <h4>What is Federated Learning?</h4>
+                        <h6>The process of Federated Learning consists of the following cycle: </h6>
+                        <ol>
+                          <li><p>The model on the user devices are trained locally on the user data (On-Device).</p></li>
+                          <li><p>The updated weights of the models from the user devices are sent to the server where they are averaged before being stored.</p></li>
+                          <li><p>These averaged weights are then used to update the global model which is pushed to the user devices.</p></li>
+                      </ol>
+                    </div>
+                </div>
+                <div class="area-heading">
+                  <div class="container">
+                    <h6>This achieves the following aims:
+                      <ol>
+                        <li style="padding: 20px">Sensitive user data (images, audio, etc.) stay on the device and are not uploaded to the server hence preserving the user’s privacy.</li>
+                        <li style="padding: 20px">The number of client devices is easy to increase, resulting in ease of data collection.</li>
+                      </ol>
+                   </h6>
+                  </div>
+                </div>
+            </div>
+            <center><img width="200px" src="img/background/android.png" alt=""></center>
+
+            <h1 style="font-size: 42px; color: #000000"><p>Implementing Federated Learning in Android</p></h1>
+
+
+
+            <div class="text-div">
+              <div class="container">
+                <p>This tutorial will guide you through the process of implementing Federated Learning with Android Devices as the client. The tutorial will be divided into 5 parts:</p>
+                <ol>
+                  <a href="#A."><li><p>Creating a graph and checkpoint for the model</p></li></a>
+                  <a href="#B."><li><p>Inference and Training on the Android Device</p></li></a>
+                  <a href="#C."><li><p>Extracting weights from the on-device model</p></li></a>
+                  <a href="#D."><li><p>Uploading Weights to the Server</p></li></a>
+                  <a href="#E."><li><p>Performing Federated Averaging on the server</p></li></a>
+                </ol>
+              </div>
+            </div>
+
+            <h2 id="A."> A. Creating a graph and checkpoint for the model</h2>
+
+            <div class="text-div">
+              <p>To run inference and training on Android, we'll need the model's metagraph and optionally, a checkpoint file.</p>
+              <p>For this tutorial, we'll use a simple Linear Regressor: </p>
+              <p>Let's generate the graph for the model: </p>
+              <p><pre>
+              #Python 3
+
+              1. import tensorflow as tf
+
+              2. x = tf.placeholder(tf.float32, name='input')
+              3. y_ = tf.placeholder(tf.float32, name='target')
+
+              4. W = tf.Variable(5., name='W')
+              5. b = tf.Variable(3., name='b')
+
+              6. y = x * W + b
+              7. y = tf.identity(y, name='output')
+
+              8. loss = tf.reduce_mean(tf.square(y - y_))
+              9. optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+              10. train_op = optimizer.minimize(loss, name='train')
+
+              11. init = tf.global_variables_initializer()
+
+              # Creating a tf.train.Saver adds operations to the graph to save and
+              # restore variables from checkpoints.
+
+              12. saver_def = tf.train.Saver().as_saver_def
+
+              13. with open('graph.pb', 'wb') as f:
+              14.   f.write(tf.get_default_graph().as_graph_def())
+            </pre></p>
+            <p>In line 14,<em>   tf.get_default_graph().as_graph_def()   </em>returns the Graphdef for the graph.</p>
+            <p>To generate the checkpoint files, use tf.train.Saver(): </p>
+            <p><pre>
+              saver = tf.train.Saver()
+              //Training
+              saver.save(sess, your_path + "/checkpoint_name.ckpt")
+            </pre></p>
+
+            <img src="img/checkfiles.png" alt="">
+          </div>
+
+            <h2 id="B."><p> B. Inference and Training on Android</p></h2>
+            <h3>(i) Loading the model in the Android Application</h3>
+            <div class="text-div">
+              <p>1. We use TensorFlow's Java API to enable on - device training and inference. First, import the <em> TensorFlow Package for Inference and Java API </em> in your Android application by adding the following in your <em>app’s</em> build.gradle:</p>
+              <pre>
+                    dependencies {
+                    .
+                    .
+                    .
+                    <span style= "color: #008F00">implementation </span>'org.tensorflow:tensorflow-android:1.13.1'
+                    }
+                    //Replace 1.13.1 with the latest version of the package
+              </pre>
+              <p>2. Then, import the graph in the application. To do this:</p>
+              <div class="container">
+                <p>Create a variable of class org.tensorflow.Graph:</p>
+                <pre>Graph graph = new Graph();</pre>
+                <p>Place the .pb file generated before in the assets folder and import it as a byte[] array. Let the array's name be graphdef. <br> Now, load the graph from the graphdef:  </p>
+                <pre>graph.importGraphDef(graphdef);</pre>
+              </div>
+                <p>3. To load the checkpoint, place the checkpoint files in the device and create a Tensor to the path of the checkpoint prefix: </p>
+                <pre>checkpointPrefix = org.tensorflow.Tensors.<em>create</em>(“Path to checkpoint.ckpt”);</pre>
+                <p>4. Now, load the checkpoint by running the restore checkpoint op in the graph:</p>
+                <pre>sess.runner().feed("save/Const", checkpointPrefix).addTarget("save/restore_all").run();</pre>
+                <p>5. Alternatively, initialize the graph by calling the init op:</p>
+                <pre>sess.runner().addTarget("init").run();</pre>
+            </div>
+            <h3>(ii) Performing Inference using the model</h3>
+            <div class="text-div">
+              <p>First, create an input tensor:</p><pre>
+Tensor x_train = Tensor.create(features);
+
+</pre>
+              <p>Then perform inference by:</p>
+              <pre>Tensor op_tensor = sess.runner().feed("input",input).fetch("output").run().get(0).expect(Float.class);
+              </pre>
+              <p>Copy this output to a float array using: </p>
+              <pre>op_tensor.copyTo(output);
+              </pre>
+            </div>
+            <h3>(iii) Training the model</h3>
+
+<div class="text-div">
+  <p>First, create the tensors for the input and the labels:</p>
+  <pre>Tensor x_train = Tensor.create(features);
+Tensor y_train = Tensor.create(label);
+</pre>
+            <p>Then, use the ‘train_op’ graph operation defined in the graph to train the graph:</p>
+            <pre>sess.runner().feed("input", x_train).feed("target", y_train).addTarget("train_op").run();
+</pre>
+          </div>
+            <h2 id="C.">C. Extracting weights from the on-device model</h2>
+            <div class="text-div">
+            <p>Extract the weights of the model by:</p>
+            <pre>ArrayList &ltTensor&lt?&gt&gt w1 = (ArrayList &ltTensor&lt?&gt&gt) sess.runner().fetch("W").run();
+ArrayList &ltTensor&lt?&gt&gt b1 = (ArrayList &ltTensor&lt?&gt&gt) sess.runner().fetch("b").run();
+</pre>
+            <p>Now, save these weights to send them to the server</p>
+          </div>
+          <h2 id="D."> D. Uploading the Weights to the Server</h2>
+          <div class="text-div">
+            <p>To enable Federated Averaging, we'll need a server which can receive the weights. We host a server on <strong><em>Heroku</em></strong> and use Python for server functions.</p>
+            <p>We built the following function to upload weights to the server: </p>
+            <pre>
+@app.route("/upload", methods = ['POST'])
+def upload():
+if flask.request.method == "POST":
+  print("Uploading File")
+  if flask.request.files["file"]:
+    weights = flask.request.files["file"].read()
+    weights_stream = io.BytesIO(weights)
+    bucket = storage.bucket()
+    #Uploading Files to Firebase
+    print("Saving at Server")
+    with open("delta.bin", "wb") as f:
+      f.write(weights_stream.read())
+    print("Starting upload to Firebase")
+    with open("delta.bin", "rb") as upload:
+      byte_w = upload.read()
+      #Preprocessing data before upload. File to be sent to Firebase is named "Weights.bin"
+    with open("Weights.bin", "wb") as f:
+      pickle.dump(weights, f)
+    with open("Weights.bin", "rb") as f:
+      blob = bucket.blob('weight1')
+      blob.upload_from_file(f)
+      print("File Successfully Uploaded to Firebase")
+      return "File Uploaded\n"
+  else:
+    print("File not found")
+  </pre>
+  <p>The following function uploads weights from the Android Application to the server: </p>
+  <pre>
+    String lineEnd = "\r\n";
+    String twoHyphens = "--";
+    String boundary = "*****";
+    private void uploadWeight(HttpURLConnection conn) {
+        try {
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("ENCTYPE",
+                    "multipart/form-data");
+            conn.setRequestProperty("Content-Type",
+                    "multipart/form-data;boundary=" + boundary);
+            conn.setRequestProperty("file", "weights");
+
+            DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\"" + "weights.bin" + "\"" + lineEnd);
+            dos.writeBytes(lineEnd);
+
+            //Write File
+            <em><strong>dos.write(readArrayFromDevice());</strong></em>
+
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+            int serverResponseCode = conn.getResponseCode();
+            serverResponseMessage = conn.getResponseMessage();
+            Log.i("Response Message: ", serverResponseMessage);
+            Log.i("Response Code: ", String.valueOf(serverResponseCode));
+            dos.flush();
+            dos.close();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+    }</pre>
+    <p>where <em>readArrayFromDevice()</em> reads the weights stored on the device</p>
+
+          </div>
+          <h2 id="E."> E. Performing Averaging on the Server</h2>
+          <div class="text-div">
+            <p>Now, let's average the weights. To get started, take out the weights (W, b) from the uploaded weights.</p>
+            <p>Let the weights be (W<sub>1</sub>, W<sub>2</sub>, W<sub>3</sub>, ..., W<sub>n</sub>) and (b<sub>1</sub>, b<sub>2</sub>, b<sub>3</sub>, ..., b<sub>n</sub>).</p>
+            <p>Then, the new averaged weights are: </p>
+            <p>W<sub>avg</sub> = (W<sub>1</sub> + W<sub>2</sub> + W<sub>3</sub> + ... + W<sub>n</sub>) / n</p>
+            <p>and</p>
+            <p> b<sub>avg</sub> = (b<sub>1</sub> + b<sub>2</sub> + b<sub>3</sub> + ... + b<sub>n</sub>) / n</p>
+            <p>Put these in a list</p>
+            <pre>w_ls = [W<sub>avg</sub>, b<sub>avg</sub>]</pre>
+            <p>Now, recreate the model on the server: </p>
+            <pre>model = tf.keras.models.Sequential([tf.keras.layers.Dense(1, input_shape=(features_shape, ))</pre>
+            <pre>model.compile(optimizer=tf.keras.optimizers.SGD(lr=0.01), loss=tf.keras.losses.mean_squared_error)</pre>
+            <p>Set the list of weights as the model's weights and generate the checkpoint file for it:</p>
+            <pre>
+model.set_weights(w_ls)
+saver = tf.train.Saver()
+sess = tf.keras.backend.get_session()
+save_path = saver.save(sess, "model.ckpt")</pre>
+          <p>Send these files to the Android application and store them in the folder which has the checkpoint prefix. These weights will be loaded when the application runs.</p>
+          <h4>Hence, the process of Federated Learning is Successfully completed.</h4>
+          </div>
+
+        </div>
+    </section>
+    <!--================About Area End =================-->
+
+ <!-- ================ start footer Area ================= -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>About Us</h4>
+                    <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing days open</p>
+                    <div class="footer-logo">
+                        <img src="img/logo.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Contact Info</h4>
+                    <div class="footer-address">
+                        <p>Address :Your address goes
+                        here, your demo address.</p>
+                        <span>Phone : +8880 44338899</span>
+                        <span>Email : info@colorlib.com</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Important Link</h4>
+                    <ul>
+                        <li><a href="#">WHMCS-bridge</a></li>
+                        <li><a href="#">Search Domain</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Shopping Cart</a></li>
+                        <li><a href="#">Our Shop</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-8 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Newsletter</h4>
+                    <p>Heaven fruitful doesn't over lesser in days. Appear creeping seasons deve behold bearing days open</p>
+
+                    <div class="form-wrap" id="mc_embed_signup">
+                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                        method="get">
+                        <div class="input-group">
+                            <input type="email" class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '">
+                            <div class="input-group-append">
+                                <button class="btn click-btn" type="submit">
+                                    <i class="fab fa-telegram-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="position: absolute; left: -5000px;">
+                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                        </div>
+
+                        <div class="info"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-bottom row align-items-center text-center text-lg-left no-gutters">
+            <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter-alt"></i></a>
+                <a href="#"><i class="ti-dribbble"></i></a>
+                <a href="#"><i class="ti-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ================ End footer Area ================= -->
+
+
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/jquery.form.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/theme.js"></script>
+</body>
+</html>
