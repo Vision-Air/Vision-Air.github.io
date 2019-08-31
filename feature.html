@@ -173,9 +173,9 @@
                                 </tr>
                             </tbody>
                         </table>
-
+<row><div class = "col>NH</div> aur <div class = "col">
  <table>
-                            <tbody>
+                            <tbody align="right">
                           <div class="col-md-6 col-lg-4">
                                 <h5>HDR Dataset</h5>
                                 <tr>
@@ -236,34 +236,37 @@
                             </tbody>
                         </table>
                     </div>
+                </row>
+                    </div>
+
 
                     <h4>Non-HDR Dataset</h4>
                     <ul>
                     <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="itoBut"> ITO dataset</button></li>
-                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px">SSCB dataset</button></li>
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">DTU dataset</button></li>
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">Punjabi Bagh dataset</button></li>
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">Patel Nagar dataset</button></li>
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">Gurugram dataset</button></li>
-                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px">Shadipur dataset</button></li>
-                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px">Miscellaneous dataset</button>
+                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px" id="sscbBut">SSCB dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="dtuBut">DTU dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="punBut">Punjabi Bagh dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="patBut">Patel Nagar dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="guruBut">Gurugram dataset</button></li>
+                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px" id="shaBut">Shadipur dataset</button></li>
+                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px" id="miscBut">Miscellaneous dataset</button>
 
 
                 </ul>
 
-                <button  style="background-color: white;border-radius: 50px;margin: 10px"> Download All</button>
+                <button  style="background-color: white;border-radius: 50px;margin: 10px" id="allBut"> Download All</button>
                                 </div>
 <div >
                 <h4 align="right|top">HDR Dataset</h4>
                     <ul>
                    
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">Patel Nagar dataset</button></li>
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">Gurugram dataset</button></li>
-                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px">Miscellaneous dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="patHDRBut">Patel Nagar dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="guruHDRBut">Gurugram dataset</button></li>
+                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px"id="miscHDRBut" >Miscellaneous dataset</button></li>
 
 
                 </ul>
-                <button  style="background-color: white;border-radius: 50px;margin: 10px"> Download All</button>
+                <button  style="background-color: white;border-radius: 50px;margin: 10px" id="allHDRBut"> Download All</button>
                 </div>
             </div>
         </div>
@@ -365,19 +368,196 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 };
 firebase.initializeApp(firebaseConfig);
 var storage = firebase.storage().ref();
-var itoRef = storage.child('ITO.zip');
-var downloadButton = document.getElementById('itoBut');
+
+var itoRef = storage.child('nonHDR').child('ITO_nonHDR.zip');
+var sscbRef = storage.child('nonHDR').child('SSCB_nonHDR.zip');
+var punRef = storage.child('nonHDR').child('Punjabi_Bagh_nonHDR.zip');
+var patRef = storage.child('nonHDR').child('PatelNagar_nonHDR.zip');
+var dtuRef = storage.child('nonHDR').child('DTU_nonHDR.zip');
+var shadiRef = storage.child('nonHDR').child('Shadipur_nonHDR.zip');
+var guruRef = storage.child('nonHDR').child('Gurgaon_nonHDR.zip');
+var miscRef = storage.child('nonHDR').child('misc_nonHDR.rar');
+var allRef = storage.child('nonHDR');
+var patHDRRef = storage.child('HDR').child('PatelNagar_HDR.zip');
+var guruHDRRef = storage.child('HDR').child('gurgaon_hdr.zip');
+var miscHDRRef = storage.child('HDR').child('misc_hdr.zip');
+var allHDRRef = storage.child('HDR');
+
+var downloadButtonITo = document.getElementById('itoBut');
+var downloadButtonSScb = document.getElementById('sscbBut');
+var downloadButtonPun = document.getElementById("punBut");
+var downloadButtonpat = document.getElementById("patBut");
+var downloadButtonDTU = document.getElementById("dtuBut");
+var downloadButtonShadi = document.getElementById("shaBut");
+var downloadButtonGuru = document.getElementById("guruBut");
+var downloadButtonMisc = document.getElementById("miscBut");
+var downloadButtonAll = document.getElementById("allBut");
+var downloadButtonHDRpat = document.getElementById("patHDRBut");
+var downloadButtonHDRguru = document.getElementById("guruHDRBut");
+var downloadButtonHDRMisc = document.getElementById("miscHDRBut");
+var downloadButtonALLHDr = document.getElementById("allHDRBut");
+
+
 // Get the download URL
-downloadButton.addEventListener('click', function(){
+downloadButtonITo.addEventListener('click', function(){
 
-itoRef.getDownloadURL().then(function(url) {
-  // Insert url into an <img> tag to "download"
-    console.log(url)
+itoRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});
+downloadButtonSScb.addEventListener('click', function(){
 
+sscbRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});
+downloadButtonPun.addEventListener('click', function(){
 
+punRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonpat.addEventListener('click', function(){
 
-    })
-})
+patRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonDTU.addEventListener('click', function(){
+
+dtuRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonShadi.addEventListener('click', function(){
+
+shadiRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonGuru.addEventListener('click', function(){
+
+guruRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonMisc.addEventListener('click', function(){
+
+miscRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonAll.addEventListener('click', function(){
+
+allRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonHDRpat.addEventListener('click', function(){
+
+patHDRRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonHDRguru.addEventListener('click', function(){
+
+guruHDRRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonHDRMisc.addEventListener('click', function(){
+
+miscHDRRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});downloadButtonALLHDr.addEventListener('click', function(){
+
+allHDRRef.getDownloadURL().then(function(url,filename) {
+    console.log(url);
+     var link = document.createElement("a");
+  link.download = filename;
+  
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  });
+});
 
 
 </script>
