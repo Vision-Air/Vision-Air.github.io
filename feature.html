@@ -18,6 +18,10 @@
 </head>
 <body>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+ 
+
+
     <!--================Header Menu Area =================-->
     <header class="header_area">
         <div class="main_menu">
@@ -234,7 +238,7 @@
 
                     <h4>Non-HDR Dataset</h4>
                     <ul>
-                    <li><button style="background-color: white;border-radius: 30px;margin: 5px">ITO dataset</button></li>
+                    <li><button style="background-color: white;border-radius: 30px;margin: 5px" id="itoBut"> ITO dataset</button></li>
                     <li><button  style="background-color: white;border-radius: 30px;margin: 5px">SSCB dataset</button></li>
                     <li><button style="background-color: white;border-radius: 30px;margin: 5px">DTU dataset</button></li>
                     <li><button style="background-color: white;border-radius: 30px;margin: 5px">Punjabi Bagh dataset</button></li>
@@ -245,13 +249,16 @@
 
 
                 </ul>
+
                 <button  style="background-color: white;border-radius: 50px;margin: 10px"> Download All</button>
+                                </div>
+<div >
                 <h4 align="right|top">HDR Dataset</h4>
                     <ul>
                    
                     <li><button style="background-color: white;border-radius: 30px;margin: 5px">Patel Nagar dataset</button></li>
                     <li><button style="background-color: white;border-radius: 30px;margin: 5px">Gurugram dataset</button></li>
-                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px">Miscellaneous dataset</button>
+                    <li><button  style="background-color: white;border-radius: 30px;margin: 5px">Miscellaneous dataset</button></li>
 
 
                 </ul>
@@ -272,6 +279,7 @@
                     <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing days open</p>
                     <div class="footer-logo">
                         <img src="img/logo.png" alt="">
+
                     </div>
                 </div>
 
@@ -337,10 +345,43 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- ================ End footer Area ================= -->
 
 
+   <script src="/__/firebase/6.5.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#reserved-urls -->
+       <script src="/__/firebase/6.5.0/firebase-firestore.js"></script>
+
+
+<!-- Initialize Firebase -->
+    
+<script>var firebaseConfig = {
+  apiKey: " AIzaSyDHMTseKhFPqjcC1zy6hI3jHrBrHRMea1s ",
+  authDomain: "celestinidataset.firebaseapp.com",
+  databaseURL: "https://celestinidataset.firebaseio.com/",
+  projectId: "celestinidataset",
+  storageBucket: "celestinidataset.appspot.com",
+  messagingSenderId: "412906791597",
+  appID: "1:412906791597:web:ea23bf61b0d1bfd9",
+};
+firebase.initializeApp(firebaseConfig);
+var storage = firebase.storage().ref();
+var itoRef = storage.child('ITO.zip');
+var downloadButton = document.getElementById('itoBut');
+// Get the download URL
+downloadButton.addEventListener('click', function(){
+
+itoRef.getDownloadURL().then(function(url) {
+  // Insert url into an <img> tag to "download"
+    console.log(url)
 
 
 
+})
+})
 
+
+</script>
+ 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="js/jquery-2.2.4.min.js"></script>
