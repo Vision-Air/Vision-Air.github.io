@@ -9,7 +9,7 @@ is the file you need to edit to change the look of the
 theme.
 ---------------------------------------------------- */
 /*=====================================================================
-@Template Name: Builder Construction 
+@Template Name: Builder Construction
 @Author: Rocky Ahmed
 @Developed By: Rocky Ahmed
 @Developer URL: http://rocky.wethemez.com
@@ -25,11 +25,11 @@ Table of Content:
 05/ banner
 06/ breadcrumb
 07/ about
-08/ project 
-09/ price 
-10/ blog  
-11/ service  
-12/ contact 
+08/ project
+09/ price
+10/ blog
+11/ service
+12/ contact
 13/ footer
 
 =====================================================================*/
@@ -54,6 +54,7 @@ a {
 
 .row.m0 {
   margin: 0px; }
+
 
 body {
   line-height: 24px;
@@ -3102,7 +3103,7 @@ h6 {
 ============================================================================================ */
 .about-area {
   position: relative; }
- 
+
   @media (max-width: 1199px) {
     .about-area:after {
       right: -44px;
@@ -3179,7 +3180,7 @@ h6 {
   .area-heading .main_btn:hover {
     border: 1px solid #f84b67; }
 
-/* End  About Area css 
+/* End  About Area css
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
