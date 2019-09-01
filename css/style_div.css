@@ -492,6 +492,7 @@ ul {
     .hero-banner {
       padding: 110px 0; } }
   .hero-banner-sm {
+
     padding-top: 80px;
     padding-bottom: 80px; }
     @media (min-width: 992px) {
@@ -3139,7 +3140,7 @@ h6 {
     width: 40%;
     height: 100%;
     background-size: contain;
-    background-image: url(https://1.bp.blogspot.com/-K65Ed68KGXk/WOa9jaRWC6I/AAAAAAAABsM/gglycD_anuQSp-i67fxER1FOlVTulvV2gCLcB/s1600/FederatedLearning_FinalFiles_Flow%2BChart1.png);
+    background-image: url(../img/HDRNon.PNG);
     background-position:top;
     background-repeat: no-repeat;
     right: 0;
