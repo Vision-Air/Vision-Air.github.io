@@ -3188,6 +3188,7 @@ h6 {
   .about-area .col-lg-6:nth-child(2) .single-about .about-icon:after {
     background: #71beb4; }
 
+
 .area-heading {
   text-align: left; }
   @media (min-width: 1199px) and (max-width: 1199px) {
@@ -3221,7 +3222,103 @@ h6 {
   .area-heading .main_btn:hover {
     border: 1px solid #f84b67; }
 
+.about-area-div {
+      position: relative; }
+      .about-area-div:after {
+        content: '';
+        position: absolute;
+        width: 40%;
+        height: 100%;
+        background-size: contain;
+        background-image: url(../img/fed.png);
+        background-position:top;
+        background-repeat: no-repeat;
+        right: 0;
+        top: 0; }
+      @media (max-width: 1199px) {
+        .about-area-div:after {
+          right: -44px;
+          background-size: contain; } }
+      .about-area-div .single-about {
+        text-align: left;
+        padding: 40px 0 0;
+        transition: all 300ms linear 0s; }
+        .about-area-div .single-about .about-icon {
+          width: 170px;
+          height: 95px;
+          text-align: center;
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
+          line-height: 112px; }
+          .about-area-div .single-about .about-icon:after {
+            content: '';
+            position: absolute;
+            height: 80px;
+            width: 80px;
+            background: #fcefed;
+            border-radius: 100%;
+            left: 0;
+            z-index: -1;
+            top: 0; }
+          .about-area-div .single-about .about-icon i {
+            font-size: 40px;
+            color: #050817; }
+        .about-area-div .single-about .single-about-content h5 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #1d1d1d;
+          margin-bottom: 18px; }
+        .about-area-div .single-about .single-about-content p {
+          line-height: 27px;
+          font-size: 14px;
+          margin-bottom: 35px; }
+      .about-area-div .col-lg-6:nth-child(1) .single-about .about-icon:after {
+        background: #fca6a6; }
+      .about-area-div .col-lg-6:nth-child(2) .single-about .about-icon:after {
+        background: #71beb4; }
+
+
+    .area-heading {
+      text-align: left; }
+      @media (min-width: 1199px) and (max-width: 1199px) {
+        .area-heading {
+          padding-top: 30px; } }
+      @media (max-width: 991px) {
+        .area-heading {
+          margin-top: 0; }
+          .area-heading h4 br {
+            display: none; }
+          .area-heading p br {
+            display: none; } }
+      .area-heading h4 {
+        font-size: 45px;
+        color: #1d1d1d;
+        font-family: "Poppins", sans-serif;
+        margin-bottom: 40px;
+        line-height: 58px; }
+      .area-heading h6 {
+        font-size: 16px;
+        color: #333333;
+        font-weight: 400;
+        margin-bottom: 25px; }
+      .area-heading p {
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+        color: #7f7f7f;
+        margin-bottom: 40px;
+        line-height: 27px;
+        padding-right: 65px; }
+      .area-heading .main_btn:hover {
+        border: 1px solid #f84b67; }
+
+    /* End  About Area css
+
+
+
 /* End  About Area css
+
+
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
